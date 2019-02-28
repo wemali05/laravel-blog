@@ -5,12 +5,13 @@
 
 @section('content')
 
-
+<h1>Projects</h1>
 
     @foreach($projects as $project)
 
        <li> {{ $project->tittle }}</li>
-       <li>{{$project->description}}</li>
+       
       
     @endforeach
 @endsection
+
