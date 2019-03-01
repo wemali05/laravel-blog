@@ -8,7 +8,7 @@
    <h1>Create a new project</h1> 
 
     <form method="POST" action="/projects">
-    {{ csrf_field() }}
+    {{csrf_field()}}
     <div>
     <input type="text" name="tittle" placeholder="Project tittle">
     </div>

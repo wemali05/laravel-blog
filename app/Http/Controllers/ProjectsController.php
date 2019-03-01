@@ -19,40 +19,36 @@ class ProjectsController extends Controller
         {
             return view('projects.create');
         }
+    
 
     public function edit($id)
     {
-        $project=project::find($id);
+
+       
+        $project= Project::find($id);
 
 
         return view('projects.edit', compact('project'));
     }
 
-    public function update($id)
+    public function update()
+   
     {
-       $project= project::find($id);
+        dd('helo');
+    //    $project= Project::find($id);
 
-       $project->tittle = request('tittle');
-       $project->description = request('description');
+    //    $project->tittle = request('tittle');
+    //    $project->description = request('description');
 
-       $project->save();
+    //    $project->save();
 
-       return redirect('/projects');
+    //    return redirect('/projects');
     }
 
     public function destroy($id){
-        $project= project::find($id);
+        Project::find($id)->delete();
 
-        
-       $project->tittle = request('tittle');
-       $project->description = request('description');
-
-       $project->save();
-
-       return redirect('/projects');
-
-
-
+        return redirect('/projects');
     }
 
     public function store()
