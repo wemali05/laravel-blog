@@ -9,6 +9,8 @@
 <h1 class="tittle">Edit project</h1> 
 
 <form method="POST" action="/projects/{{$project->id}}" style="margin-bottom: 2em;">
+{{method_field('PATCH')}}
+{{csrf_field()}}
    
     <div class="field">
             <label class="label" for="tittle">title</label>

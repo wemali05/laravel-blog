@@ -31,18 +31,18 @@ class ProjectsController extends Controller
         return view('projects.edit', compact('project'));
     }
 
-    public function update()
+    public function update($id)
    
     {
-        dd('helo');
-    //    $project= Project::find($id);
+        
+       $project= Project::find($id);
 
-    //    $project->tittle = request('tittle');
-    //    $project->description = request('description');
+       $project->tittle = request('tittle');
+       $project->description = request('description');
 
-    //    $project->save();
+       $project->save();
 
-    //    return redirect('/projects');
+       return redirect('/projects');
     }
 
     public function destroy($id){
