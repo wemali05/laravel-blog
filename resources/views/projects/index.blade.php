@@ -6,12 +6,15 @@
 @section('content')
 
 <h1>Projects</h1>
-
+<ul>
     @foreach($projects as $project)
-
-       <li> {{ $project->tittle }}</li>
-       
-      
+    <li>
+        <a href="/projects/{{$project->id}}"> 
+           {{ $project->tittle }}
+        </a>
+     </li>
     @endforeach
+</ul>
+       
 @endsection
 
