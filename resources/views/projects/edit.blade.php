@@ -12,7 +12,7 @@
 {{method_field('PATCH')}}
 {{csrf_field()}}
    
-    <div class="field">
+<div class="field">
             <label class="label" for="tittle">title</label>
                 <div class="control">
                     <input type="text" name="tittle" placeholder="Project tittle" value="{{$project->tittle}}">
