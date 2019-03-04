@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Project;
 
+
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 class ProjectsController extends Controller
-{
+{                               
     public function index()
     {
         $projects =Project::all();
@@ -36,10 +39,7 @@ class ProjectsController extends Controller
     public function update(Project $project)
    
     {
-       $project->tittle = request('tittle');
-       $project->description = request('description');
-
-       $project->save();
+       $project->update(request(['tittle', 'description']));
 
        return redirect('/projects');
     }
@@ -51,13 +51,14 @@ class ProjectsController extends Controller
         return redirect('/projects');
     }
 
-    public function store()
+    public function store(Request $request)
     {
-        Project::create([
-            'tittle' => request('tittle'),
-            'description' => request('description')
+        $this->validate($request,[
+            'tittle' => ['required', 'min:5', 'max:100'],
+            'description' => ['required', 'min:5', 'max:100']
         ]);
-       
+
+        Project::create(request(['tittle', 'description']));
 
         return redirect('/projects');
     }

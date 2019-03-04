@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
  
@@ -9,17 +9,37 @@
 
     <form method="POST" action="/projects">
     {{csrf_field()}}
-    <div>
-    <input type="text" name="tittle" placeholder="Project tittle">
+    <div class="field">
+        <label class="label" for="tittle">title</label>
+        <div class="control">
+            <input type="text" class="input {{ $errors->has('tittle') ? 'is-danger': ''}}" name="tittle" placeholder="Project tittle" value="{{old('tittle')}}"> 
+        </div>
     </div>
     
-    <div>
-    <textarea name="description" placeholder="Project description"></textarea>
+    <div class="field">
+        <label class="label" for="tittle">description</label>
+        <div class="control">
+             <textarea name="description" placeholder="Project description" class="textarea {{ $errors->has('description') ? 'is-danger': ''}}" >{{old('description') }}</textarea>
+        </div>
     </div>
-    <div>
-    <button type="submit">Create project </button>
+    <div class="field">
+        <div class="control">
+                <button type="submit">Create project </button>
+        </div>
     </div>
-    
+
+    @if ($errors->any())
+
+       <div class="notification is-danger">
+            <ul>
+                @foreach($errors->all() as $error)
+                     <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+      </div>
+
+   @endif
+
     </form>
 
 </body>

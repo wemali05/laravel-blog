@@ -13,7 +13,9 @@ class PagesController extends Controller
             'foo' => 'bar',
             'tasks' => ['Going home',
                          'Going mad',
-                         'Do laundry']
+                         'Do laundry',
+                         'Attend a meeting'
+                         ]
                            
          
           ]);
