@@ -20,9 +20,28 @@ delete/project/1 (destroty)
 |
 */
 
+// app()->singleton('twitter', function(){
+   
+//     return new \App\Services\Twitter('aassssaadddd');
+// });
+
+// Route::get('/', function(){
+//     dd(app('App\Example'));
+
+//     return view('welcome');
+// });
+ 
+// use App\Services\Twitter;
+
+// Route::get('/', function(Twitter $twitter){
+//     dd($twitter);
+
+//     return view('welcome');
+// });
+
 Route::get('/', 'PagesController@home');
-Route::get('/about', 'PagesController@about');
-Route::get('/contact', 'PagesController@contact');
+// Route::get('/about', 'PagesController@about');
+// Route::get('/contact', 'PagesController@contact');
 
 
 // Route::get('/projects', 'ProjectsController@index');
@@ -31,5 +50,13 @@ Route::get('/contact', 'PagesController@contact');
  
 Route::resource('/projects', 'ProjectsController');
 Route::post('/projects/{project}/tasks', 'ProjectTasksController@store');
-Route::patch('/tasks/{task}', 'ProjectTasksController@update');
+// Route::patch('/tasks/{task}', 'ProjectTasksController@update');
 
+Route::post('/completed-tasks/{task}', 'CompletedTasksController@store');
+Route::delete('/completed-tasks/{task}', 'CompletedTasksController@destroy');
+
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');

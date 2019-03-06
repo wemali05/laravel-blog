@@ -1,10 +1,9 @@
-<!DOCTYPE html> 
-<html lang="en">
-<head>
- 
-    <title></title>
-</head>
-<body>
+@extends('layout')
+
+
+@section('content')
+
+
    <h1>Create a new project</h1> 
 
     <form method="POST" action="/projects">
@@ -28,19 +27,8 @@
         </div>
     </div>
 
-    @if ($errors->any())
-
-       <div class="notification is-danger">
-            <ul>
-                @foreach($errors->all() as $error)
-                     <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-      </div>
-
-   @endif
+    @include('errors')
 
     </form>
 
-</body>
-</html>
+@endsection

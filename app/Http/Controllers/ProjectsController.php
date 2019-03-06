@@ -8,18 +8,25 @@ use App\Project;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 class ProjectsController extends Controller
-{                               
-    public function index()
+{   
+    public function __construct(){
+        $this->middleware('auth');
+    }
+    
+
+    public function index( )
     {
-        $projects =Project::all();
+       $project = Project::where('owner_id', auth()->id())->get();
         //  return $projects;
 
-        return view ('projects.index', compact('projects'));
+        return view ('projects.index', compact('project'));
     }
        
     
     public function show(Project $project)
-    {
+    { 
+        
+
          return view('projects.show', compact('project'));
     }
 
@@ -53,12 +60,12 @@ class ProjectsController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request,[
+       $this->validate($request,[
             'tittle' => ['required', 'min:5', 'max:100'],
             'description' => ['required', 'min:5', 'max:100']
         ]);
-
-        Project::create(request(['tittle', 'description']));
+         
+        Project::create(request(['tittle', 'description']) + ['owner_id'=>auth()->id()]);
 
         return redirect('/projects');
     }
