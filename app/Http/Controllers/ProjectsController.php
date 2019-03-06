@@ -25,7 +25,9 @@ class ProjectsController extends Controller
     
     public function show(Project $project)
     { 
-        
+        // // abort_if(! auth()-user()->owns($project), 403);
+        // abort_if($project->owner_id !== auth()->id(), 403);
+        $this->authorize('view', $project);
 
          return view('projects.show', compact('project'));
     }
@@ -46,6 +48,8 @@ class ProjectsController extends Controller
     public function update(Project $project)
    
     {
+        $this->authorize('update', $project);
+
        $project->update(request(['tittle', 'description']));
 
        return redirect('/projects');
@@ -53,6 +57,8 @@ class ProjectsController extends Controller
 
     public function destroy(Project $project)
     {
+        $this->authorize('destroy', $project);
+
         $project->delete();
 
         return redirect('/projects');
