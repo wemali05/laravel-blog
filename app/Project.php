@@ -9,6 +9,9 @@ class Project extends Model
     protected $guarded=[];
 
 
+    public function owner(){
+     return   $this->belongsTo(User::class);
+    }
 
     public function tasks()
     {
@@ -17,7 +20,7 @@ class Project extends Model
 
     public function addTask($description)
     {
-        $this->tasks()->create(compact('description'));
+       $this->tasks()->create(compact('description'));
     }
 }
  
